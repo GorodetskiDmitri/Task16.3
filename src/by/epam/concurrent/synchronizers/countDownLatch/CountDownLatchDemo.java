@@ -11,6 +11,8 @@ public class CountDownLatchDemo {
 	
 	public void useShareResource() throws InterruptedException {
 		this.doAction1();
+		countDownLatch.countDown();
+		countDownLatch.await();
 		this.doAction2();
 	}
 	
@@ -22,8 +24,6 @@ public class CountDownLatchDemo {
 		Thread.sleep(time);
 		
 		logger.debug(Thread.currentThread().getName() + " finish action 1 after " + time + " ms.");
-		countDownLatch.countDown();
-		countDownLatch.await();
 	}
 	
 	public void doAction2() throws InterruptedException {
