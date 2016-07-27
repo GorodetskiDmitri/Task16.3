@@ -1,9 +1,12 @@
 package by.epam.concurrent.synchronizers.countDownLatch;
 
-public class Main {
+import java.util.concurrent.CountDownLatch;
 
+public class Main {
+	
 	public static void main(String[] args) {
 		CountDownLatchDemo concurrentObject = new CountDownLatchDemo();
+		CountDownLatch countDownLatch = concurrentObject.getCountDownLatch();
 		
 		ThreadDemo t1 = new ThreadDemo(concurrentObject);
 		ThreadDemo t2 = new ThreadDemo(concurrentObject);
@@ -16,6 +19,14 @@ public class Main {
 		new Thread(t3).start();
 		new Thread(t4).start();
 		new Thread(t5).start();
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		countDownLatch.countDown();
 	}
 
 }
