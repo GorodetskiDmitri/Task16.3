@@ -19,7 +19,7 @@ public class ConditionDemo {
 		lock.lock();
 		
 		try {
-			while (isCondition1Made) {
+			if (isCondition1Made) {
 				condition2.await();
 			}
 			Random random = new Random();
@@ -42,7 +42,7 @@ public class ConditionDemo {
 		lock.lock();
 		
 		try {
-			while (!isCondition1Made) {
+			if (!isCondition1Made) {
 				condition1.await();
 			}
 			Random random = new Random();
